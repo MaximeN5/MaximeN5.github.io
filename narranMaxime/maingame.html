@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title>mainGame</title>
+
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <main class="container">
+            <div class="row justify-content-md-center mb-4">
+                <div class="col-md-auto" style="background-color: darkred">
+                    <h1 id="mainEvent"> PLAYER 1 TURN ! </h1>
+                    <h2 id="bRound" style="display:none"></h2>
+                </div>
+            </div>
+            <div class="row row-eq-height mb-4">
+                <div class="col-lg-6 col-md-5 col-sm-3" id="repp1" style="background-color: yellow">
+                    player 1
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-3" id="repp2" style="background-color: blueviolet">
+                    player 2
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div id="butgrp" class="col btn-group">
+                    <button type="button" id="btnPierre" value="pierre" class="btn btn-primary btn-lg btn-block">Pierre</button>
+                    <button type="button" id="btnFeuille" value="feuille" class="btn btn-primary btn-lg btn-block">Feuille</button>
+                    <button type="button" id="btnCiseaux" value="ciseaux" class="btn btn-primary btn-lg btn-block">Ciseaux</button>
+                    <button type="button" id="btnLézard" value="lézard" class="btn btn-primary btn-lg btn-block">Lézard</button>
+                    <button type="button" id="btnSpock" value="spock" class="btn btn-primary btn-lg btn-block">Spock</button>
+                </div>
+            </div>
+            <div class="row text-center mt-4" style="border: 2px solid #4CAF50;">
+                <div class="col-md-4 mt-md-0 mt-3">
+                    <div id="scorep1" style="background-color: yellow"></div>
+                </div>
+                <div class="col-md-4 mt-md-0 mt-3">
+                    <button type="button" id="btnValidate" class="btn btn-success btn-lg" style="display:none">Valider</button>
+                </div>
+                <div class="col-md-4 mt-md-0 mt-3">
+                    <div id="scorep2" style="background-color: blueviolet"></div>
+                </div>
+            </div>
+        </main>
+
+
+
+    </body>
+    <script >
+
+        var playerOne, playerTwo, theGame, currentValue;
+        
+        var mapOfTruth = new Map([
+            ['pierre',['ciseaux','lézard']],
+            ['feuille',['spock','pierre']],
+            ['ciseaux',['lézard','feuille']],
+            ['lézard',['feuille','spock']],
+            ['spock',['pierre','ciseaux']]
+        ]);
+
+        class player{
+            constructor(sortOf,num){
+                this.num = num;
+                this.type = sortOf;
+                this.score = 0;
+                this.currentPick = "";
+                document.getElementById("scorep"+num).innerHTML = this.score;
+            }
+
+            cleanpick(){
+                this.currentPick = "";
+            }
+        }
+
+        class game{
+            constructor(rows,p1,p2){
+                this.rowMax = parseInt(rows)+1;
+                this.currentP = 1;
+                this.currentRow = 1;
+                this.players = new Map();
+                this.players.set(1,p1);
+                this.players.set(2,p2);
+            }
+
+            switch(){
+                if(this.currentP===1){
+                    this.currentP=2;
+                }else{
+                    this.currentP=1;
+                }
+                currentValue = "";
+                document.querySelector("#mainEvent").innerHTML = 'PLAYER '+this.currentP+' TURN !';
+                document.querySelector("#btnValidate").style.display = 'none';
+            }
+        }
+
+        var changeImg =  function (value){
+            document.querySelector("#repp"+theGame.currentP).innerHTML = '';
+            document.querySelector("#repp"+theGame.currentP).innerHTML = "<img src='img/"+value+".jpg' style='max-width:70%' />";
+            document.querySelector("#btnValidate").style.display = '';
+            currentValue = value;
+        };
+
+        document.getElementById("btnValidate").addEventListener('click',function(){
+            theGame.players.get(theGame.currentP).currentPick = currentValue; 
+            currentValue = "";
+            document.querySelector("#repp"+theGame.currentP).innerHTML = 'Player '+theGame.currentP;
+            if(theGame.currentP==1 && playerTwo.type=="ROBO"){
+                theGame.currentP = 2;
+                let randomNumber = Math.floor(Math.random() * 5)+1;
+                playerTwo.currentPick = document.querySelector('#butgrp > button:nth-child('+randomNumber+')').value;
+            }
+            if(theGame.currentP==2){
+                pointGiven();
+                theGame.currentRow++;
+            }
+            theGame.switch();
+        });
+
+
+        document.querySelectorAll('#butgrp > button').forEach(function(element){
+            element.addEventListener('click',function(){
+                changeImg(this.value);
+            });
+        });
+        
+        var nextResult = function()
+        {
+            document.querySelector("#repp1").innerHTML = 'Player 1'; 
+            document.querySelector("#repp2").innerHTML = 'Player 2';
+            playerOne.cleanpick();
+            playerTwo.cleanpick();
+            document.querySelector("#bRound").style.display = 'none';
+            document.querySelectorAll("[type=button]").forEach(function(element){
+                element.removeAttribute("disabled");
+            })
+           if(theGame.currentRow==theGame.rowMax){
+                endGame();
+                let s = window.location.href;
+                let s2 = s.substring(0,s.lastIndexOf('/'));
+                window.location = s2 +"/maingate.html";
+            }
+        }
+
+        var pointGiven = function(){ 
+            let result = "";
+            if(playerOne.currentPick==playerTwo.currentPick){
+                playerOne.score++;
+                playerTwo.score++;
+                result = "Both of you !! ";
+            }else if(mapOfTruth.get(playerOne.currentPick).indexOf(playerTwo.currentPick)>=0){
+                playerOne.score++;
+                result = "playerOne !! ";
+            }else{
+                playerTwo.score++; 
+                result = "playerTwo !! ";
+            }
+            document.getElementById("scorep"+1).innerHTML = playerOne.score;
+            document.getElementById("scorep"+2).innerHTML = playerTwo.score;
+            document.querySelector("#repp1").innerHTML = "<img src='img/"+playerOne.currentPick+".jpg' style='max-width:70%' />";
+            document.querySelector("#repp2").innerHTML = "<img src='img/"+playerTwo.currentPick+".jpg' style='max-width:70%' />";
+            
+            document.querySelectorAll("[type=button]").forEach(function(element){
+                element.disabled = 'true';
+            })
+            
+            document.querySelector("#bRound").style.display = '';
+            document.querySelector("#bRound").innerHTML = "Winner round "+theGame.currentRow+" is "+result;
+            setTimeout(nextResult,5000);
+        }
+        
+        var endGame = function(){
+            let popup = window.open('','final_popup','menubar=no, scrollbars=no, top=200, left=200, width=700, height=300');
+            popup.document.write("<h1>Résultat final de la partie en "+(theGame.rowMax-1)+" Manche"+((theGame.rowMax-1)>1?'s':'')+": <h1>");
+            if(playerOne.score==playerTwo.score){
+                popup.document.write("<h1>Egalite Entre les 2 joueurs :D<h1>");
+            }else if(playerOne.score>playerTwo.score){
+                popup.document.write("<h1>The winner is playerOne !!!!!!!!!!<h1>");
+            }else{
+                popup.document.write("<h1>The winner is playerTwo !!!!!!!!!!<h1>");
+            }
+        }
+
+        var fillUp = function(){
+            var nbrPlayer = sessionStorage.getItem('nbrPlayer');
+            var nbrParties = sessionStorage.getItem('nbrParties');
+            playerOne = new player("HUMAN",1);
+            if(nbrPlayer==2){
+                playerTwo = new player("HUMAN",2); 
+            }else{
+                playerTwo = new player("ROBO",2);
+            }
+            theGame = new game(nbrParties,playerOne,playerTwo);
+            console.log(theGame);
+        }
+
+        window.onload = fillUp;
+    </script>
+</html>

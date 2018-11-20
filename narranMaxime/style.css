@@ -1,0 +1,44 @@
+.jumbotron img{
+    width: 50%;
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+.jumbotron h2{
+    text-align: center;
+}
+
+.jumbotron{
+    background-color:cadetblue;
+}
+
+button:hover {
+    background-color: blue;
+    color: white;
+}
+
+button[class="btn btn-primary btn-lg btn-block"]{
+    border: 2px solid #4CAF50;
+}
+
+.btn-block + .btn-block {
+     margin-top: 0rem;
+}
+
+
+
+#repp1, #repp2{
+    font-size: 100px;  
+}
+
+#scorep1, #scorep2{
+    font-size: 50px;
+}
+
+div:has(>#butgrp){
+    margin-bottom: 25rem;
+}
+
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>mainGate</title>
+
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <head>  
+            <div class="container">
+                <div class="jumbotron">
+                    <h2>Pierre-Feuille-Ciseau-Lézard-Spock</h2> 
+                    <img src="img/front.jpg" alt="pcfls">
+                </div>
+            </div>
+        </head>
+        <main class="container">
+            <form action="maingame.html">
+                <div class="form-group row align-items-center">
+                    <label for="selectPlayer">Nombre de Joueur(s)</label>
+                    <select class="form-control" id="nbrPlayer">
+                        <option selected="selected "value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="form-group row align-items-center">
+                    <label for="selectParties">Nombre de manche(s)</label>
+                    <select class="form-control" id="nbrParties">
+                        <option selected="selected" value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div col-auto>
+                    <button class="btn btn-default" type="submit">Lancer la partie</button>
+                </div>
+
+            </form>
+        </main>
+    </body>
+    <script >
+
+        document.querySelector("button").addEventListener("click",function(){
+            var e = document.getElementById("nbrPlayer"); 
+            var a = document.getElementById("nbrParties");
+            var nbrUser = e.options[e.selectedIndex].value;
+            var nbrP = a.options[a.selectedIndex].value;
+            sessionStorage.setItem('nbrPlayer', nbrUser);
+            sessionStorage.setItem('nbrParties', nbrP);
+        });
+
+        
+
+
+    </script>
+</html>
