@@ -10,17 +10,19 @@
 
         <div class="sidebar">
             <a href="javascript:history.back()">retour</a>
-            <button id="myBtn">Fichier des participants</button>
+            <button id="myBtn" title="les participant doivent etre presenter sous forme de colonne">Fichier des participants</button>
             <label for="removePart">Un.e volontaire:</label>
-            <input  type="text" id="Volunteer" name="removePart" list="part" title="Appuyer sur enter une fois la personne selectionné.e">
+            <input  type="text" id="Volunteer" name="removePart" list="part" title="Appuyer sur entrer une fois la personne selectionné.e">
             <datalist id="part"></datalist>
         </div>
-
+        <header class="page-header">
+            <h1>Tirage au sort!</h1>
+        </header>
         <div class = "main">
                 <div class = "wrapper">
                     <div>
                         <h1>ET LE VAINQUEUR EST : <p id="result"></p> </h1>
-                        <button type="button" onclick=randomSelect()>Résultat:
+                        <button type="button" onclick=randomSelect() title="Une personne selectionné au hasard">Résultat:
                         </button>
                     </div>
                     <div>
@@ -32,7 +34,7 @@
                 <div id="mylistFiller" class="modal">
                         <div class="modal-content">
                                 <span class="close">&times;</span>
-                                <h2>Choisir un fichier representant les participants</h2><input type="file" accept=".txt" id="fileInput">
+                                <h2>Choisir un fichier representant les participants au tirage au soert</h2><input type="file" accept=".txt" id="fileInput">
                         </div>
                 </div>
                 
@@ -76,7 +78,7 @@
                 'Pierre Henri',
                 'Jean-Jaques',
                 'Marie Helene',
-                'Fidele Castro'
+                'joe dimagio'
                 ]
 
         var AlreadyUsed = [

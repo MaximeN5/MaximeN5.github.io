@@ -3,11 +3,20 @@ html, body {
     background-color: gray;
 }
 .main {
-    height: 100%;
+    height: 70%;
     width: 100%;
     display: table;
-    margin-left: 160px;
+    margin-left: 50px;
     padding: 0px 10px;
+}
+
+header {
+  width: 100%;
+  margin-left: 150px;
+  padding: 0px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  
 }
 .wrapper {
     display: table-cell;
@@ -15,6 +24,7 @@ html, body {
     vertical-align: middle;
     text-align: center;
 }
+
 
 button{
   background-color: whitesmoke; /* Green */
@@ -28,6 +38,7 @@ button{
 
 button:hover{
     background-color: lightblue; 
+    cursor: pointer;
  }
 button:active{
    background-color: red; 
