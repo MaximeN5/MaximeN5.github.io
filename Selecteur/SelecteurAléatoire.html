@@ -124,8 +124,9 @@
                             var reader = new FileReader();
 
                             reader.onload = function(e) {
-                                var words = reader.result.split('\n','.',',');
+                                var words = reader.result.replace(/^\s*[\r\n]/gm, '\n').split(/[\n\,\.]+/);
                                 nameList = words;
+                                console.log(nameList);
                                 AlreadyUsed = [];
                                 fileDisplayArea.innerText = nameList;
                                 fillList()
