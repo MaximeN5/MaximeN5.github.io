@@ -10,7 +10,7 @@
 
         <div class="sidebar">
             <a href="javascript:history.back()">retour</a>
-            <button id="myBtn" title="les participant doivent etre presenter sous forme de colonne">Fichier des participants</button>
+            <button id="myBtn" title="Les personnes doivent etre séparée par une virgule, un point ou un retour à la ligne">Fichier des participants</button>
             <label for="removePart">Un.e volontaire:</label>
             <input  type="text" id="Volunteer" name="removePart" list="part" title="Appuyer sur entrer une fois la personne selectionné.e">
             <datalist id="part"></datalist>
@@ -124,7 +124,7 @@
                             var reader = new FileReader();
 
                             reader.onload = function(e) {
-                                var words = reader.result.split('\n');
+                                var words = reader.result.split('\n','.',',');
                                 nameList = words;
                                 AlreadyUsed = [];
                                 fileDisplayArea.innerText = nameList;
