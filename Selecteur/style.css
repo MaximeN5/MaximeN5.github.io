@@ -33,7 +33,7 @@ button{
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 button:hover{
@@ -58,7 +58,7 @@ button:active{
 .sidebar a{
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 30px;
     color: #818181;
     display: block;
 }
@@ -66,13 +66,14 @@ button:active{
 .sidebar input{
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 20px;
     color: #818181;
     display: block;
 }
 
 .sidebar label{
     font-size: 20px;
+    margin-top: 10%;
     color: antiquewhite;
 }
 
@@ -102,6 +103,10 @@ button:active{
     float: right;
     font-size: 28px;
     font-weight: bold;
+  }
+
+  h1{
+    font-size: 50px;
   }
   
   .close:hover,
