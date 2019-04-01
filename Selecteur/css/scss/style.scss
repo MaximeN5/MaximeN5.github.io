@@ -55,28 +55,28 @@ button{
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-}
 
-.sidebar a{
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 30px;
-    color: #818181;
-    display: block;
-}
+    & a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 30px;
+      color: #818181;
+      display: block;
+    }
 
-.sidebar input{
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #818181;
-    display: block;
-}
+    & input{
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #818181;
+      display: block;
+    }
 
-.sidebar label{
-    font-size: 20px;
-    margin-top: 10%;
-    color: antiquewhite;
+    & label {
+      font-size: 20px;
+      margin-top: 10%;
+      color: antiquewhite;
+    }
 }
 
 .modal {
@@ -100,23 +100,23 @@ button{
     border: 1px solid #888;
     width: 80%;
   }
+  
+  h1{
+    font-size: 50px;
+  }
+
   .close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
 
-  h1{
-    font-size: 50px;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+    &:hover,&:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  } 
 
 @media screen and (max-height: 450px){
     .sidenav {padding-top: 15px;}

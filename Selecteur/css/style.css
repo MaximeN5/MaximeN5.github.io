@@ -54,7 +54,6 @@ button:active {
   background-color: #111;
   overflow-x: hidden;
 }
-
 .sidebar a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -62,7 +61,6 @@ button:active {
   color: #818181;
   display: block;
 }
-
 .sidebar input {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -70,7 +68,6 @@ button:active {
   color: #818181;
   display: block;
 }
-
 .sidebar label {
   font-size: 20px;
   margin-top: 10%;
@@ -99,19 +96,17 @@ button:active {
   width: 80%;
 }
 
+h1 {
+  font-size: 50px;
+}
+
 .close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-
-h1 {
-  font-size: 50px;
-}
-
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
