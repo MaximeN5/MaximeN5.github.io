@@ -33,7 +33,8 @@
                 'Pierre Henri',
                 'Jean-Jaques',
                 'Marie Helene',
-                'joe dimagio'
+                'joe dimagio',
+                'Chantal Goya'
                 ]
 
         var AlreadyUsed = [
