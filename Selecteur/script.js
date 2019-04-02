@@ -23,7 +23,6 @@
                 if (index !== -1) {
                     nameList.splice(index, 1);
                 }
-                fileDisplayArea.innerHTML = nameList;
                 fillList();
                 document.getElementById("Volunteer").value="";
             }
@@ -42,10 +41,26 @@
                 
         var fillList = function(){
             document.getElementById("part").innerHTML='';
+            
+            document.getElementById("candidate").innerHTML='';
+            document.getElementById("victorious").innerHTML='';
             nameList.forEach(function(item){
+
             var o = document.createElement("option");
+            var lp = document.createElement("li");
+
             o.innerText = item;
+            lp.innerText = item;
             document.getElementById("part").append(o);
+            document.getElementById("candidate").append(lp);
+        });
+
+        AlreadyUsed.forEach(function(item){
+
+            var lp = document.createElement("li");
+
+            lp.innerText = item;
+            document.getElementById("victorious").append(lp);
         });
     };
             
@@ -54,7 +69,6 @@
                 nameList = AlreadyUsed;
                 AlreadyUsed = [];
                 document.getElementById("result").innerHTML = "On recommence";
-                fileDisplayArea.innerHTML = nameList;
                 fillList();
                 return;
             }
@@ -62,16 +76,13 @@
             document.getElementById("result").innerHTML = nameList[random];
             AlreadyUsed.push(nameList[random]);
             nameList.splice(random,1);
-            fileDisplayArea.innerHTML = nameList
             fillList();
         }
 
         window.onload = function() {
             fillList();
             var fileInput = document.getElementById('fileInput');
-            var fileDisplayArea = document.getElementById('fileDisplayArea');
             var datalist = document.getElementById('');
-            fileDisplayArea.innerHTML = nameList
 
             fileInput.addEventListener('change', function(e) {
                 var file = fileInput.files[0];
@@ -84,14 +95,11 @@
                                 nameList = words;
                                 console.log(nameList);
                                 AlreadyUsed = [];
-                                fileDisplayArea.innerText = nameList;
                                 fillList()
                             }
 
                             reader.readAsText(file);  
-                        } else {
-                            fileDisplayArea.innerText = "File not supported!";
-            }
+                        }
         });  
     }
     window.onclick = function(event) {
